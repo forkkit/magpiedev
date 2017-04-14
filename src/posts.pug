@@ -1,0 +1,14 @@
+extends layout/_default
+
+block vars
+  - var page_title = 'Posts'
+  - var page_active = 'posts'
+block content
+  .view
+    .title-component Posts
+    each page in pages
+      a.box-component(href=`${page_prefix + page.path}`)
+        .title=page.title
+        .date=page.date
+        .image(style='background-image: url("' + page.image + '")')
+        .text=page.description

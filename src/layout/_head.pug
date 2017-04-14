@@ -1,0 +1,16 @@
+- var bust = Math.random()
+
+head
+  meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no')
+  meta(name='description', content=description)
+  meta(property='og:title', content=title)
+  meta(property='og:site_name', content=title)
+  meta(property='og:type', content='website')
+  meta(property='og:description', content=description)
+  meta(property='og:url', content=url)
+  meta(property='og:image', content=page_og_image ? page_og_image + '?' + bust : '/img/screenshot.jpg?' + bust)
+  link(rel='stylesheet' href='/index.css?' + bust)
+  link(rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:300,400')
+
+  title= page_title ? page_title + ' | ' + title : title
+  // include analytics

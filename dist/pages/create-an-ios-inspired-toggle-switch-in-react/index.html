@@ -1,0 +1,72 @@
+<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"><meta name="description" content="In quest of the shinny new dev toys"><meta property="og:title" content="magpiedev"><meta property="og:site_name" content="magpiedev"><meta property="og:type" content="website"><meta property="og:description" content="In quest of the shinny new dev toys"><meta property="og:url" content="https://magpiedev.com"><meta property="og:image" content="/img/screenshot.jpg?0.5222600396679344"><link rel="stylesheet" href="/index.css?0.5222600396679344"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400"><title>Create an iOS inspired toggle switch in React.js | magpiedev</title><!-- include analytics--></head><body><nav class="navbar"><div class="content"><a class="logo" href="/"><img class="image" src="/images/logo.svg"></a><a class="title" href="/">magpiedev</a><div class="items"><a href="/posts">posts</a></div><!-- .items.right--><!--   a(href='/about' class=page_active === 'about' ? 'active' : '')--><!--     img(src='/images/github.svg')--></div></nav><div class="view"><div class="featured-box-component content-page"><div class="post-title">Create an iOS inspired toggle switch in React.js</div><div class="post-date">Jan 16th, 2017</div><div class="post-image" style="background-image: url(&quot;/pages/create-an-ios-inspired-toggle-switch-in-react/1.png&quot;)"></div><p>Hey! Here is a simple React toggle switch component that can be used for any mobile inspired website, or hybrid app.</p>
+<div class="spacer h25"></div>
+
+<h2 id="the-react">The React</h2>
+<p>This Component only requires one state key for the toggle, aptly named <code>toggle</code>.</p>
+<p>First, add the imports and the DOM render node:</p>
+<div class="markdown-code"><pre><code class="lang-js"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
+<span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span>
+
+<span class="hljs-comment">// Component will go here.</span>
+
+ReactDOM.render(&lt;Toggle /&gt;, document.getElementById(<span class="hljs-string">'root'</span>))</code></pre></div><p>Now, create a class extending the React Component and insert it where our prior comment was:</p>
+<div class="markdown-code"><pre><code class="lang-js">
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Toggle</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+  state = {
+    toggle: <span class="hljs-literal">false</span>
+  }
+
+  toggle () {
+    <span class="hljs-keyword">this</span>.setState({ toggle: !<span class="hljs-keyword">this</span>.state.toggle })
+  }
+}</code></pre></div><p>To continue, we will add the JSX for the actual DOM elements in the render function:
+The className will add the <code>toggle</code> class when the toggle is active.</p>
+<div class="markdown-code"><pre><code class="lang-js">render () {
+  <span class="hljs-keyword">const</span> className = <span class="hljs-string">`toggle-component <span class="hljs-subst">${ <span class="hljs-keyword">this</span>.state.toggle ? <span class="hljs-string">' active'</span> : <span class="hljs-string">''</span>}</span>`</span>
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>
+      <span class="hljs-attr">className</span>=<span class="hljs-string">{className}</span>
+      <span class="hljs-attr">onClick</span>=<span class="hljs-string">{()</span> =&gt;</span> this.toggle()}&gt;
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">'toggle-button'</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  )
+}</span></code></pre></div><h2 id="css">CSS</h2>
+<div class="markdown-code"><pre><code class="lang-css"><span class="hljs-selector-class">.wrapper</span> {
+  <span class="hljs-attribute">padding</span>: <span class="hljs-number">50px</span>;
+}
+
+<span class="hljs-selector-class">.toggle-component</span> {
+  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">2rem</span>;
+  <span class="hljs-attribute">color</span>: <span class="hljs-number">#171717</span>;
+  <span class="hljs-attribute">width</span>: <span class="hljs-number">50px</span>;
+  <span class="hljs-attribute">height</span>: <span class="hljs-number">20px</span>;
+  <span class="hljs-attribute">background</span>: <span class="hljs-number">#777777</span>;
+  <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid <span class="hljs-number">#555</span>;
+  <span class="hljs-attribute">position</span>: relative;
+  <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">10px</span>;
+  <span class="hljs-attribute">cursor</span>: pointer;
+  <span class="hljs-attribute">transition</span>: border-color background-color <span class="hljs-number">0.3s</span>;
+}
+<span class="hljs-selector-class">.toggle-component</span><span class="hljs-selector-class">.active</span> {
+  <span class="hljs-attribute">background</span>: <span class="hljs-number">#66CC99</span>;
+  <span class="hljs-attribute">border-color</span>: <span class="hljs-number">#dfdfdf</span>;
+}
+<span class="hljs-selector-class">.toggle-component</span><span class="hljs-selector-class">.active</span> <span class="hljs-selector-class">.toggle-button</span> {
+  <span class="hljs-attribute">right</span>: -<span class="hljs-number">2px</span>;
+}
+<span class="hljs-selector-class">.toggle-component</span> <span class="hljs-selector-class">.toggle-button</span> {
+  <span class="hljs-attribute">position</span>: absolute;
+  <span class="hljs-attribute">top</span>: -<span class="hljs-number">3px</span>;
+  <span class="hljs-attribute">right</span>: <span class="hljs-number">50%</span>;
+  <span class="hljs-attribute">height</span>: <span class="hljs-number">26px</span>;
+  <span class="hljs-attribute">width</span>: <span class="hljs-number">26px</span>;
+  <span class="hljs-attribute">background</span>: <span class="hljs-number">#dfdfdf</span>;
+  <span class="hljs-attribute">box-shadow</span>: <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">5px</span> <span class="hljs-number">#555</span>;
+  <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">50%</span>;
+  <span class="hljs-attribute">transition</span>: right <span class="hljs-number">0.3s</span>;
+}</code></pre></div><h2 id="jsfiddle-demo">JSFiddle Demo</h2>
+<p>All together now:</p>
+<iframe width="100%" height="300" src="//jsfiddle.net/stevelacy/tnp9m9zc/9/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+
+</div></div><footer class="footer-component"><div class="footer-content"><p>In quest of the shinny new dev toys</p><a href="https://blog.codinghorror.com/the-magpie-developer/" target="_blank">The Magpie developer</a><br><br><div>logo magpie icon by</div><a href="https://thenounproject.com/followscontent/" target="_blank">Philipp Lehmann</a></div><p>© 2017 magpiedev</p></footer><!-- script(src='/js/index.js')--></body></html>

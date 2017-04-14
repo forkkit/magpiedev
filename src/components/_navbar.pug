@@ -1,0 +1,10 @@
+nav.navbar
+  .content
+    a.logo(href='/')
+      img.image(src='/images/logo.svg')
+    a.title(href='/')=title
+    .items
+      a(href='/posts' class=page_active === 'posts' ? 'active' : '') posts
+    // .items.right
+    //   a(href='/about' class=page_active === 'about' ? 'active' : '')
+    //     img(src='/images/github.svg')

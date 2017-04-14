@@ -1,0 +1,58 @@
+.navbar
+  width: 100%
+  background: $color-theme
+  color: $color-white
+  display: flex
+  padding: 25px
+  align-items: center
+  box-shadow: 0 1px 5px $color-light-grey
+  justify-content: center
+  a
+    color: $color-white
+  .content
+    display: flex
+    max-width: $sizes-max-page-width
+    width: 100%
+    align-items: center
+    .logo
+      height: 50px
+      width: 50px
+      border-radius: 50%
+      background: $color-white
+      position: relative
+      margin: 0 25px
+      box-shadow: 0 0 1px $color-shadow
+      .text
+        font-size: 40px
+        color: $color-black
+        position: absolute
+        top: 0
+        left: 7px
+      .image
+        position: absolute
+        top: 0
+        left: -25%
+    .title
+      font-size: 2rem
+      text-align: center
+    .items
+      display: flex
+      align-items: center
+      font-size: 1rem
+      text-transform: uppercase
+      margin-left: 50px
+      &.right
+        margin-left: auto
+      a
+        position: relative
+        padding: 0 5px
+        margin-top: 5px
+        border-bottom: 2px solid $color-transparent
+        transition: border .3s
+        &.active
+          border-bottom: 2px solid $color-white
+        &:hover
+          border-bottom: 2px solid $color-white-shade
+        img
+          height: 40px
+          width: 40px

@@ -1,0 +1,20 @@
+@import '../style/colors'
+@import './_box'
+
+.featured-box-component, .content-page
+  @extend .box-component
+  min-height: 400px
+  height: initial
+  width: calc(100% - 20px)
+  margin: 10px
+  .image
+    height: 300px
+    width: 100%
+  .date
+    float: right
+  .text
+    margin: 10px 0
+
+.content-page
+  min-height: 600px
+  padding: 50px

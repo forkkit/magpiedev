@@ -1,0 +1,23 @@
+@import 'style/reset'
+@import 'style/colors'
+@import 'style/globals'
+@import 'style/animations'
+
+body
+  background: $color-white-shade
+  display: flex
+  min-height: 100%
+  flex-direction: column
+  align-items: center
+  font-family: 'Roboto', sans-serif
+  font-weight: 300
+  position: relative
+  padding-bottom: 300px
+
+a
+  color: $color-dark-grey
+  text-decoration: none
+  &:hover
+    color: #000
+
+@import 'components/index.sass'

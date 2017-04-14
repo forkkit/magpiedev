@@ -1,0 +1,19 @@
+{
+  "title": "magpiedev",
+  "url": "https://magpiedev.com",
+  "description": "In quest of the shinny new dev toys",
+  "page_prefix": "/pages/",
+  "featured_page": 1,
+  "DO NOT EDIT THE PAGES BELOW": "yeah",
+  "pages": [
+    {
+      "id": 1,
+      "title": "Create an iOS inspired toggle switch in React.js",
+      "description": "A simple iOS inspired toggle switch with React and SASS",
+      "category": "javascript",
+      "image": "/pages/create-an-ios-inspired-toggle-switch-in-react/1.png",
+      "date": "Jan 16th, 2017",
+      "path": "create-an-ios-inspired-toggle-switch-in-react"
+    }
+  ]
+}

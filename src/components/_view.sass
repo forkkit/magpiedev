@@ -1,0 +1,36 @@
+@import '../style/colors'
+.view
+  max-width: $sizes-max-page-width
+  min-height: 600px
+  width: calc(100% - 20px)
+  margin: 10px
+  border-radius: 3px
+
+  .post-title
+    font-size: 2rem
+    float: left
+
+  .post-image
+    background-color: $color-white-shade
+    background-repeat: no-repeat
+    background-position: center center
+    background-size: cover
+    height: 200px
+    width: 200px
+    margin: 100px auto 50px
+
+  .post-date
+    float: right
+    margin-top: .5rem
+
+  pre
+    background: #273239
+    padding: 20px
+    margin: 20px 0
+
+.spacer
+  height: 25px
+  &.h50
+    height: 50px
+  &.h100
+    height: 100px
