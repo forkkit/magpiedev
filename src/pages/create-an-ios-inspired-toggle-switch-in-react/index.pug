@@ -4,6 +4,7 @@ block vars
   - var page_id = 1
   - var page = pages.filter(v => v.id === page_id)[0]
   - var page_title = page.title
+  - var page_og_image = url + page_prefix + page.path + '/' + page.og_image || ''
 
 block content
   .view
