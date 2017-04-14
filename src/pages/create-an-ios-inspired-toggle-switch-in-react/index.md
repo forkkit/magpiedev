@@ -51,7 +51,7 @@ render () {
 }
 ```
 
-## CSS
+## The CSS
 
 ```css
 .wrapper {

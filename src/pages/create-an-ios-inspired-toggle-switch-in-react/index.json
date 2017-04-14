@@ -1,8 +1,8 @@
 {
   "id": 1,
-  "title": "Create an iOS inspired toggle switch in React.js",
-  "description": "A simple iOS inspired toggle switch with React and SASS",
-  "category": "javascript",
+  "title": "Create an iOS inspired toggle switch in React",
+  "description": "A simple iOS inspired toggle switch with React and CSS",
+  "categories": [ "javascript", "react" ],
   "image": "1.png",
   "date": "2017-01-16T22:03:14.718Z"
 }
