@@ -23,14 +23,35 @@
     float: right
     margin-top: .5rem
 
+  .post-fin
+    margin: 20px auto
+    width: 100%
+    text-align: center
+    img
+      width: 50px
+
   pre
     background: #273239
     padding: 20px
     margin: 20px 0
+    word-wrap: break-word
+    white-space: pre-wrap
 
-.spacer
-  height: 25px
-  &.h50
-    height: 50px
-  &.h100
-    height: 100px
+  .spacer
+    height: 25px
+    &.h50
+      height: 50px
+    &.h100
+      height: 100px
+
+  @media all and (max-width: 970px)
+    .content-page
+      padding: 10px
+      margin: 5px
+      width: calc(100% - 10px)
+      .post-title, .post-date
+        text-align: center
+      .post-date
+        margin: 5px auto
+        float: initial
+

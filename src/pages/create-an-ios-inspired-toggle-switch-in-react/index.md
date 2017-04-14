@@ -94,6 +94,7 @@ render () {
 ## JSFiddle Demo
 All together now:
 
-<iframe width="100%" height="300" src="//jsfiddle.net/stevelacy/tnp9m9zc/9/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<div class='spacer'></div>
+<iframe width="100%" height="300" src="//jsfiddle.net/stevelacy/tnp9m9zc/9/embedded/result,js,css" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 
