@@ -8,9 +8,12 @@
   "pages": [
     {
       "id": 1,
-      "title": "Create an iOS inspired toggle switch in React.js",
-      "description": "A simple iOS inspired toggle switch with React and SASS",
-      "category": "javascript",
+      "title": "Create an iOS inspired toggle switch in React",
+      "description": "A simple iOS inspired toggle switch with React and CSS",
+      "categories": [
+        "javascript",
+        "react"
+      ],
       "image": "/pages/create-an-ios-inspired-toggle-switch-in-react/1.png",
       "date": "Jan 16th, 2017",
       "path": "create-an-ios-inspired-toggle-switch-in-react"

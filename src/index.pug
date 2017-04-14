@@ -12,4 +12,6 @@ block content
         .title=page.title
         .date=page.date
         .text=page.description
+        each tag in page.categories
+          .tag=tag
         .image(style='background-image: url("' + page.image + '")')
