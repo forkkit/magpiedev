@@ -1,5 +1,5 @@
 
-Hey! Here is a simple React toggle switch component that can be used for any mobile inspired website, or hybrid app.
+Here is a simple React toggle switch component that can be used for any mobile inspired website, or hybrid app.
 
 <div class="spacer h25"></div>
 
