@@ -1,11 +1,11 @@
 extends layout/_default
 
 block vars
-  - var page_title = 'Posts'
+  - var page_title = 'Articles'
   - var page_active = 'posts'
 block content
   .view
-    .title-component Posts
+    .title-component Articles
     each page in pages
       a.box-component(href=`${page_prefix + page.path}`)
         .title=page.title
