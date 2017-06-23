@@ -54,7 +54,7 @@ const config = {
     pug: [ './src/**/*.pug', '!./src/**/_*.pug' ],
     sass: './src/index.sass'
   },
-  dist: './dist'
+  dist: './'
 }
 
 gulp.task('js', (cb) => {
