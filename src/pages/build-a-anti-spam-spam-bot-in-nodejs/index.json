@@ -1,5 +1,5 @@
 {
-  "id": 1,
+  "id": 2,
   "title": "Build an anti-spam-spam bot in node.js",
   "description": "Have fun and annoy those pesky spammers!",
   "categories": [ "javascript", "node" ],
@@ -7,4 +7,3 @@
   "og_image": "2.png",
   "date": "2017-06-23T22:06:03.643Z"
 }
-

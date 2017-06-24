@@ -46,9 +46,9 @@ const config = {
     js: './src/**/*.js',
     pug: [ './src/**/*.pug', '!./src/**/_*.pug', './src/**/*.md' ],
     sass: './src/**/*.sass',
-    images: ['./src/**/*.jpg', './src/**/*.svg', './src/**/*.png'],
-    pages: ['./src/pages/**/index.json']
+    images: ['./src/**/*.jpg', './src/**/*.svg', './src/**/*.png']
   },
+  pages: ['./src/pages/**/index.json'],
   src: {
     js: './src/**.*.js',
     pug: [ './src/**/*.pug', '!./src/**/_*.pug' ],
@@ -63,8 +63,8 @@ gulp.task('js', (cb) => {
 
 gulp.task('pages', () => {
   const pages = []
-  return gulp.src(config.paths.pages)
-    .pipe(((opts) => {
+  return gulp.src(config.pages)
+    .pipe((() => {
       return through.obj((file, inc, cb) => {
         const page = JSON.parse(String(file.contents))
         page.path = file.dirname.substr(file.dirname.lastIndexOf('/') + 1)
