@@ -39,6 +39,7 @@ As a programmer I thought, well, lets build our own!
 **WARNING: READ THE TWILIO TOS. This _will_ go against Twilio's [Terms Of Service](https://www.twilio.com/legal/aup).**
 <br />
 **I _never_ tested this on a phone number that I did not own.**
+**I am not responsible for anything you do with this.**
 
 <div class="spacer h50"></div>
 
@@ -166,6 +167,9 @@ number  3 status: queued
 ```
 
 Each queued call is then passed to the target which receives the message: "You have been detected for spamming"
+
+<br />
+Adding support for multiple numbers is easy, just do a loop over them.
 
 
 Congrats!

@@ -1,4 +1,4 @@
-<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"><meta name="description" content="Development tips and tricks - in quest of the shinny new dev toys"><meta property="og:title" content="Magpie dev"><meta property="og:site_name" content="Magpie dev"><meta property="og:type" content="website"><meta property="og:description" content="Development tips and tricks - in quest of the shinny new dev toys"><meta property="og:url" content="https://magpiedev.com"><meta property="og:image" content="https://magpiedev.com/pages/build-a-anti-spam-spam-bot-in-nodejs/2.png?0.904169953453146?0.7059430981667061"><link rel="stylesheet" href="/index.css?0.7059430981667061"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400"><title>Build an anti-spam-spam bot in node.js | Magpie dev</title><!-- include analytics--></head><body><nav class="navbar"><div class="content"><a class="logo" href="/"><img class="image" src="/images/logo.svg"></a><a class="title" href="/">Magpie dev</a><div class="items"><a href="/posts">articles</a></div><!-- .items.right--><!--   a(href='/about' class=page_active === 'about' ? 'active' : '')--><!--     img(src='/images/github.svg')--></div></nav><div class="view"><div class="featured-box-component content-page"><div class="post-title">Build an anti-spam-spam bot in node.js</div><div class="post-date">Jun 23rd, 2017</div><div class="post-image" style="background-image: url(&quot;/pages/build-a-anti-spam-spam-bot-in-nodejs/1.png?0.904169953453146&quot;);"></div><p>Annoyed by spammers sending you &quot;IRS&quot; phone calls? How about &quot;Problems with your account&quot;?</p>
+<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"><meta name="description" content="Development tips and tricks - in quest of the shinny new dev toys"><meta property="og:title" content="Magpie dev"><meta property="og:site_name" content="Magpie dev"><meta property="og:type" content="website"><meta property="og:description" content="Development tips and tricks - in quest of the shinny new dev toys"><meta property="og:url" content="https://magpiedev.com"><meta property="og:image" content="https://magpiedev.com/pages/build-a-anti-spam-spam-bot-in-nodejs/2.png?0.6491118286264201?0.5791981181472583"><link rel="stylesheet" href="/index.css?0.5791981181472583"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400"><title>Build an anti-spam-spam bot in node.js | Magpie dev</title><!-- include analytics--></head><body><nav class="navbar"><div class="content"><a class="logo" href="/"><img class="image" src="/images/logo.svg"></a><a class="title" href="/">Magpie dev</a><div class="items"><a href="/posts">articles</a></div><!-- .items.right--><!--   a(href='/about' class=page_active === 'about' ? 'active' : '')--><!--     img(src='/images/github.svg')--></div></nav><div class="view"><div class="featured-box-component content-page"><div class="post-title">Build an anti-spam-spam bot in node.js</div><div class="post-date">Jun 23rd, 2017</div><div class="post-image" style="background-image: url(&quot;/pages/build-a-anti-spam-spam-bot-in-nodejs/1.png?0.6491118286264201&quot;);"></div><p>Annoyed by spammers sending you &quot;IRS&quot; phone calls? How about &quot;Problems with your account&quot;?</p>
 <p><br /></p>
 <p>Well, I am.</p>
 <div class="spacer h25"></div>
@@ -31,7 +31,8 @@ You will notice that it is written in python, and is using a popular telophony s
 
 <p><strong>WARNING: READ THE TWILIO TOS. This <em>will</em> go against Twilio&#39;s <a href="https://www.twilio.com/legal/aup">Terms Of Service</a>.</strong>
 <br />
-<strong>I <em>never</em> tested this on a phone number that I did not own.</strong></p>
+<strong>I <em>never</em> tested this on a phone number that I did not own.</strong>
+<strong>I am not responsible for anything you do with this.</strong></p>
 <div class="spacer h50"></div>
 
 <h3 id="build-a-anti-spam-spam-bot-in-node-js">Build a anti-spam-spam bot in Node.js</h3>
@@ -121,6 +122,8 @@ https:<span class="hljs-comment">//dfdf9034.ngrok.com</span></code></pre></div><
 <span class="hljs-keyword">number</span>  <span class="hljs-number">2</span> <span class="hljs-keyword">status</span>: queued
 <span class="hljs-keyword">number</span>  <span class="hljs-number">3</span> <span class="hljs-keyword">status</span>: queued
 ...</code></pre></div><p>Each queued call is then passed to the target which receives the message: &quot;You have been detected for spamming&quot;</p>
+<p><br />
+Adding support for multiple numbers is easy, just do a loop over them.</p>
 <p>Congrats!</p>
 <p><div class="spacer h25"></div>
 The complete source code can be found <a href="https://github.com/stevelacy/anti-spam-spam-bot">here</a></p>
