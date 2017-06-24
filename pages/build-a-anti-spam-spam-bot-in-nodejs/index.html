@@ -1,0 +1,127 @@
+<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"><meta name="description" content="Development tips and tricks - in quest of the shinny new dev toys"><meta property="og:title" content="Magpie dev"><meta property="og:site_name" content="Magpie dev"><meta property="og:type" content="website"><meta property="og:description" content="Development tips and tricks - in quest of the shinny new dev toys"><meta property="og:url" content="https://magpiedev.com"><meta property="og:image" content="https://magpiedev.com/pages/build-a-anti-spam-spam-bot-in-nodejs/2.png?0.904169953453146?0.7059430981667061"><link rel="stylesheet" href="/index.css?0.7059430981667061"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400"><title>Build an anti-spam-spam bot in node.js | Magpie dev</title><!-- include analytics--></head><body><nav class="navbar"><div class="content"><a class="logo" href="/"><img class="image" src="/images/logo.svg"></a><a class="title" href="/">Magpie dev</a><div class="items"><a href="/posts">articles</a></div><!-- .items.right--><!--   a(href='/about' class=page_active === 'about' ? 'active' : '')--><!--     img(src='/images/github.svg')--></div></nav><div class="view"><div class="featured-box-component content-page"><div class="post-title">Build an anti-spam-spam bot in node.js</div><div class="post-date">Jun 23rd, 2017</div><div class="post-image" style="background-image: url(&quot;/pages/build-a-anti-spam-spam-bot-in-nodejs/1.png?0.904169953453146&quot;);"></div><p>Annoyed by spammers sending you &quot;IRS&quot; phone calls? How about &quot;Problems with your account&quot;?</p>
+<p><br /></p>
+<p>Well, I am.</p>
+<div class="spacer h25"></div>
+
+<p>There are several approaches to solving this issue.</p>
+<ul>
+<li>Ignore</li>
+<li>Get mad and yell back</li>
+<li>Get duped for the scam</li>
+<li>Report on <a href="https://donotcall.gov">https://donotcall.gov</a></li>
+<li>Troll the living daylights out of em</li>
+</ul>
+<div class="spacer h25"></div>
+
+<p>I saw the recent video showing a programmer creating a simple python script to flood the spammers with many calls from different numbers to keep their lines busy.</p>
+<div class="spacer h25"></div>
+
+<p>If you haven&#39;t seen the video put on YouTube by &quot;Project Mayham&quot;, check it out, it&#39;s pretty awesome. Fun starts about 1:55</p>
+<iframe width="660" height="371" src="https://www.youtube.com/embed/EzedMdx6QG4?start=115" frameborder="0" allowfullscreen></iframe>
+
+<p><br /></p>
+<p>I took a screenshot of the code the uploader wrote:
+<img src="./screen1.png" /></p>
+<div class="spacer h25"></div>
+You will notice that it is written in python, and is using a popular telophony service for making the calls.
+<div class="spacer h25"></div>
+
+<p>As a programmer I thought, well, lets build our own!</p>
+<div class="spacer h25"></div>
+
+<p><strong>WARNING: READ THE TWILIO TOS. This <em>will</em> go against Twilio&#39;s <a href="https://www.twilio.com/legal/aup">Terms Of Service</a>.</strong>
+<br />
+<strong>I <em>never</em> tested this on a phone number that I did not own.</strong></p>
+<div class="spacer h50"></div>
+
+<h3 id="build-a-anti-spam-spam-bot-in-node-js">Build a anti-spam-spam bot in Node.js</h3>
+<div class="spacer h50"></div>
+
+<p>Here is how the bot works:</p>
+<ul>
+<li>A valid <a href="https://www.twilio.com">Twilio</a> username/apiKey and purchased phone number is required to use a phone number to call from.</li>
+<li>The bot creates a call using a TwiML response from our server to &quot;create&quot; the spoken words (Twilio Programmable Voice).</li>
+<li>And the bot repeats until all the spammer&#39;s phone lines are used up.<div class="spacer h50"></div>
+
+</li>
+</ul>
+<p>Step one, head over to <a href="https://twilio.com">https://twilio.com</a> and get the required telophony items. Refer to <a href="https://www.twilio.com/docs/quickstart/node/programmable-voice#getting-started">this guide</a> for more info.</p>
+<div class="spacer h25"></div>
+Alright, lets get started by firing up your favorite editor (neovim) and creating two files, one for our bot (client) and one for the server (I&#39;ll get to that shortly).
+
+Our dependencies are minimal, just the <a href="https://www.npmjs.com/package/twilio">twilio</a> and <a href="https://www.npmjs.com/package/express">express</a> modules.
+<div class="spacer h25"></div>
+
+<p><code>package.json</code></p>
+<div class="markdown-code"><pre><code class="lang-json">{
+  <span class="hljs-attr">"dependencies"</span>: {
+    <span class="hljs-attr">"express"</span>: <span class="hljs-string">"^4.15.3"</span>,
+    <span class="hljs-attr">"twilio"</span>: <span class="hljs-string">"^3.4.0"</span>
+  }
+}</code></pre></div><h3 id="the-server-js">The server.js</h3>
+<p>We will start with creating the simple server used by twilio for creating the automated voice message.
+The server returns a TwiML (variation on XML) to the twilio server for converting into the programmable voice.</p>
+<div class="spacer h25"></div>
+
+<p><code>server.js</code></p>
+<div class="markdown-code"><pre><code class="lang-js"><span class="hljs-keyword">var</span> express = require('express')
+
+<span class="hljs-keyword">var</span> <span class="hljs-keyword">app</span> = express()
+<span class="hljs-keyword">var</span> PORT = 3000
+
+<span class="hljs-keyword">app</span>.<span class="hljs-keyword">post</span>('/call', function (req, res) {
+  res.send('&lt;?xml <span class="hljs-keyword">version</span>=<span class="hljs-string">"1.0"</span> encoding=<span class="hljs-string">"UTF-8"</span>?&gt;&lt;Response&gt;&lt;Say&gt;You have been detected <span class="hljs-keyword">for</span> spamming&lt;/Say&gt;&lt;/Response&gt;')
+})
+
+console.<span class="hljs-built_in">log</span>('starting <span class="hljs-keyword">on</span> port ', PORT)
+<span class="hljs-keyword">app</span>.listen(PORT)</code></pre></div><div class="spacer h25"></div>
+
+<p>Run it with: <code>$ node server.js</code></p>
+<p>You can either host it on a remote server, or use <a href="https://ngrok.com/">ngrok</a> to host it on your local system.</p>
+<div class="markdown-code"><pre><code class="lang-undefined"><span class="hljs-symbol">$</span> ngrok http <span class="hljs-number">3000</span>
+
+<span class="hljs-function"><span class="hljs-title">ngrok</span></span> running...
+
+https:<span class="hljs-comment">//dfdf9034.ngrok.com</span></code></pre></div><p>Copy the URL returned by ngrok for the next step.</p>
+<div class="spacer h50"></div>
+
+<h3 id="the-bot-js">The bot.js</h3>
+<div class="spacer h25"></div>
+
+<p>Our <code>bot.js</code> will contain the actual code for creating the calls.</p>
+<p>Replace the <code>accountId</code> with your twilio account SID, and replace the <code>accountToken</code> with your twilio auth token.</p>
+<p><div class="spacer h25"></div>
+<code>bot.js</code></p>
+<div class="markdown-code"><pre><code class="lang-js"><span class="hljs-selector-tag">var</span> twilio = require(<span class="hljs-string">'twilio'</span>)
+
+<span class="hljs-selector-tag">var</span> accountId = <span class="hljs-string">'your acount sid here'</span>
+<span class="hljs-selector-tag">var</span> accountToken = <span class="hljs-string">'your account token here'</span>
+
+<span class="hljs-selector-tag">var</span> client = twilio(accountId, accountToken)
+<span class="hljs-selector-tag">var</span> INTERVAL = <span class="hljs-number">10000</span> <span class="hljs-comment">// 10 seconds</span>
+
+<span class="hljs-selector-tag">var</span> count = <span class="hljs-number">0</span>
+
+<span class="hljs-selector-tag">var</span> call = function() {
+  return client<span class="hljs-selector-class">.calls</span><span class="hljs-selector-class">.create</span>({
+    url: <span class="hljs-string">'https://&lt;your ngrok random url&gt;ngrok.com/call'</span>,
+    to: <span class="hljs-string">'+&lt;the spammers number&gt;'</span>,
+    from: <span class="hljs-string">'+1&lt;the twilio phone number you purchased&gt;'</span>
+  }, function (err, res) {
+    <span class="hljs-keyword">if</span> (err) return console.error(err)
+    count++
+    console.log(<span class="hljs-string">'number '</span>, count, <span class="hljs-string">'status: '</span>, res.status)
+  })
+}
+
+<span class="hljs-function"><span class="hljs-title">call</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"><span class="hljs-title">setInterval</span><span class="hljs-params">(call, INTERVAL)</span></span></code></pre></div><p>Save that file and start it with: <code>$ node bot.js</code></p>
+<p>The response should be:</p>
+<div class="markdown-code"><pre><code class="lang-undefined"><span class="hljs-keyword">number</span>  <span class="hljs-number">1</span> <span class="hljs-keyword">status</span>: queued
+<span class="hljs-keyword">number</span>  <span class="hljs-number">2</span> <span class="hljs-keyword">status</span>: queued
+<span class="hljs-keyword">number</span>  <span class="hljs-number">3</span> <span class="hljs-keyword">status</span>: queued
+...</code></pre></div><p>Each queued call is then passed to the target which receives the message: &quot;You have been detected for spamming&quot;</p>
+<p>Congrats!</p>
+<p><div class="spacer h25"></div>
+The complete source code can be found <a href="https://github.com/stevelacy/anti-spam-spam-bot">here</a></p>
+<div class="post-fin"><img src="/images/logo.svg"></div></div></div><footer class="footer-component"><div class="footer-content"><p>Development tips and tricks - in quest of the shinny new dev toys</p><a href="https://blog.codinghorror.com/the-magpie-developer/" target="_blank">The Magpie developer</a><br><br><div>logo magpie icon by</div><a href="https://thenounproject.com/followscontent/" target="_blank">Philipp Lehmann</a></div><p>© 2017 magpiedev</p></footer><!-- script(src='/js/index.js')--></body></html>

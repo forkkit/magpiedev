@@ -1,0 +1,20 @@
+extends ../../layout/_default
+
+block vars
+  - var rand = Math.random()
+  - var page_id = 1
+  - var page = pages.filter(v => v.id === page_id)[0]
+  - var page_title = page.title
+  - var page_og_image = url + page_prefix + page.path + '/' + page.og_image + '?' + rand || ''
+
+block content
+  .view
+    .featured-box-component.content-page
+      if page.title
+        .post-title=page.title
+        .post-date=page.date
+      if page.image
+        .post-image(style='background-image: url("' + page.image + '?' + rand + '")')
+      include:markdown ./index.md
+      .post-fin
+        img(src='/images/logo.svg')
