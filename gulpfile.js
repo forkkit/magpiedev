@@ -89,10 +89,9 @@ gulp.task('pug', gulp.series(['pages'], () => {
       locals: siteConfig
     }))
     .pipe(rename(function (path) {
-      if (path.basename !== 'index') {
-        path.dirname  = path.dirname + '/' + path.basename
-        path.basename = 'index'
-      }
+      if (path.basename === 'index' || path.basename === '404') return
+      path.dirname  = path.dirname + '/' + path.basename
+      path.basename = 'index'
     }))
     .pipe(gulp.dest(config.dist))
     .pipe(reload())
