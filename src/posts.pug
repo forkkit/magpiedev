@@ -8,7 +8,7 @@ block content
     .title-component Articles
     each page in pages
       a.box-component(href=`${page_prefix + page.path}`)
+        .image(style='background-image: url("' + page.image + '")')
         .title=page.title
         .date=page.date
-        .image(style='background-image: url("' + page.image + '")')
         .text=page.description

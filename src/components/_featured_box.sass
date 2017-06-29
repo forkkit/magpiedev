@@ -3,19 +3,24 @@
 
 .featured-box-component, .content-page
   @extend .box-component
-  min-height: 400px
   height: initial
-  width: calc(100% - 20px)
   margin: 20px 10px
+  .title
+    width: calc(100% - 132px)
   .image
-    height: 300px
-    width: 100%
+    height: 200px
+    width: 200px
   .date
     float: right
+    width: 100px
   .text
     margin: 10px 0
-    padding: 10px 0
+    padding: 10px
     height: 50px
+    width: calc(100% - 200px)
+  .tags
+    margin-left: 10px
+    display: inline-block
 
 .content-page
   min-height: 600px

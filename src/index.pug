@@ -11,7 +11,8 @@ block content
       a.featured-box-component(href=`${page_prefix + page.path}`)
         .title=page.title
         .date=page.date
-        .text=page.description
-        each tag in page.categories
-          .tag=tag
         .image(style='background-image: url("' + page.image + '")')
+        .text=page.description
+        .tags
+          each tag in page.categories
+            .tag=tag
