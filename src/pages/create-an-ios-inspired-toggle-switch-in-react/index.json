@@ -4,6 +4,7 @@
   "description": "A simple iOS inspired toggle switch with React and CSS",
   "categories": [ "javascript", "react" ],
   "image": "1.png",
+  "featured": true,
   "og_image": "2.png",
   "date": "2017-01-16T22:03:14.718Z"
 }

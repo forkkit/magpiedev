@@ -15,6 +15,7 @@
         "node"
       ],
       "image": "/pages/build-a-anti-spam-spam-bot-in-nodejs/1.png",
+      "featured": true,
       "og_image": "2.png",
       "date": "Jun 23rd, 2017",
       "path": "build-a-anti-spam-spam-bot-in-nodejs"
@@ -28,6 +29,7 @@
         "react"
       ],
       "image": "/pages/create-an-ios-inspired-toggle-switch-in-react/1.png",
+      "featured": true,
       "og_image": "2.png",
       "date": "Jan 16th, 2017",
       "path": "create-an-ios-inspired-toggle-switch-in-react"

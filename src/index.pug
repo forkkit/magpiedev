@@ -3,7 +3,7 @@ extends layout/_default
 block vars
   - var page_title = description
   - var page_active = 'index'
-  - var featured = pages.filter(v => v.id === featured_page)
+  - var featured = pages.filter(v => v.featured)
 
 block content
   .view
