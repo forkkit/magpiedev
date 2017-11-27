@@ -46,7 +46,7 @@ const config = {
     js: './src/**/*.js',
     pug: [ './src/**/*.pug', '!./src/**/_*.pug', './src/**/*.md' ],
     sass: './src/**/*.sass',
-    images: ['./src/**/*.jpg', './src/**/*.svg', './src/**/*.png']
+    images: ['./src/**/*.jpg', './src/**/*.svg', './src/**/*.png', './src/**/*.ico']
   },
   pages: ['./src/pages/**/index.json'],
   src: {
