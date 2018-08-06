@@ -33,6 +33,22 @@
       "og_image": "2.png",
       "date": "Jan 16th, 2017",
       "path": "create-an-ios-inspired-toggle-switch-in-react"
+    },
+    {
+      "id": 3,
+      "title": "Scaling Tile38 on Kubernetes",
+      "description": "Scaling Tile38 with replication on kubernetes",
+      "categories": [
+        "scaling",
+        "kubernetes",
+        "tile38",
+        "devops"
+      ],
+      "image": "/pages/scaling-tile38-on-kubernetes/1.png",
+      "featured": true,
+      "og_image": "1.png",
+      "date": "Aug 1st, 2018",
+      "path": "scaling-tile38-on-kubernetes"
     }
   ]
 }
