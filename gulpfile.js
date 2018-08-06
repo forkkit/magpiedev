@@ -70,6 +70,7 @@ gulp.task('pages', () => {
         page.path = file.dirname.substr(file.dirname.lastIndexOf('/') + 1)
         page.image = '/pages/' + page.path + '/' + page.image
         const date = new Date(JSON.parse(file.contents).date)
+        page.timestamp = date.getTime()
         page.date = fecha.format(date, 'MMM Do, YYYY')
         pages.push(page)
         cb(null, file)

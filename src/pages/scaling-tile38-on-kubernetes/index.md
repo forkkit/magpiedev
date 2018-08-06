@@ -4,7 +4,9 @@
 
 [Tile38](https://github.com/tidwall/tile38) is a geospatial database written in golang. It is designed to compute gis data with high throughput.
 
-For our system we needed to autoscale Tile38 from 1 instance on kubernetes to 50 or more depending on load and requests. Since Tile38 uses mostly CPU for calculations, it is easy to add a CPU based horizontal autoscaler on kubernetes with ease.
+For our system we needed to autoscale Tile38 from 1 instance on kubernetes to 50 or more depending on load and requests.
+
+Since Tile38 uses mostly CPU for calculations, it is easy to add a CPU based horizontal autoscaler on kubernetes to change the number of replicas available.
 
 ## leader/follower replication
 
@@ -23,6 +25,7 @@ This diagram shows a general overview:
 ![diagram one -- kubernets leader/follower replication](./2.png)
 
 
+<br />
 `tile38.yaml`
 
 ```yaml
@@ -48,6 +51,7 @@ That service will enable your API deployment to connect to `http://tile38-write:
 
 The tile38 leader now needs a deployment of a single read/write Pod. This ensures that you are never writing to two instances that do not sync.
 
+<br />
 `tile38.yaml`
 
 ```yaml
@@ -82,6 +86,7 @@ Once complete you can run `kubectl apply -f tile38.yaml` to setup the deployment
 This service and deployment is what will take the brunt of all read requests, at times each pod may be using 100% of it's assigned CPU. For this setup I assigned one full CPU core to each Pod.
 
 
+<br />
 `tile38.yaml`
 
 ```yaml
@@ -105,6 +110,7 @@ spec:
 Your instances can now connect to `http://tile38-read:9851` and all the requests will be balanced to all the Pods in the following Deployment:
 
 
+<br />
 `tile38.yaml`
 
 ```yaml
@@ -166,6 +172,7 @@ This autoscaling config will ensure that the replicas will start at 1 and scale 
 
 When the cpu load drops below 80% it will slowly start removing the excess replicas until it achieves constant 80% load or just one remaining replica.
 
+<br />
 `tile38.yaml`
 ```
 ---

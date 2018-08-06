@@ -1,13 +1,14 @@
-<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"><meta name="description" content="Development tips and tricks - in quest of the shinny new dev toys"><meta property="og:title" content="Scaling Tile38 on Kubernetes | Magpie dev"><meta property="og:site_name" content="Magpie dev"><meta property="og:type" content="website"><meta property="og:description" content="Development tips and tricks - in quest of the shinny new dev toys"><meta property="og:url" content="https://magpiedev.com"><meta property="og:image" content="https://magpiedev.com/pages/scaling-tile38-on-kubernetes/1.png?0.3387272335472533?0.327939218433301"><link rel="stylesheet" href="/index.css?0.327939218433301"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400"><link rel="shortcut icon" href="/images/logo.ico"><title>Scaling Tile38 on Kubernetes | Magpie dev</title><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"><meta name="description" content="Development tips and tricks - in quest of the shinny new dev toys"><meta property="og:title" content="Scaling Tile38 on Kubernetes | Magpie dev"><meta property="og:site_name" content="Magpie dev"><meta property="og:type" content="website"><meta property="og:description" content="Development tips and tricks - in quest of the shinny new dev toys"><meta property="og:url" content="https://magpiedev.com"><meta property="og:image" content="https://magpiedev.com/pages/scaling-tile38-on-kubernetes/1.png?0.02662221165737022?0.1440351139924947"><link rel="stylesheet" href="/index.css?0.1440351139924947"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400"><link rel="shortcut icon" href="/images/logo.ico"><title>Scaling Tile38 on Kubernetes | Magpie dev</title><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
 ga('create', 'UA-101774767-2', 'auto');
-ga('send', 'pageview');</script></head><body><nav class="navbar"><div class="content"><a class="logo" href="/"><img class="image" src="/images/logo.svg"></a><a class="title" href="/">Magpie dev</a><div class="items"><a href="/posts">articles</a></div><!-- .items.right--><!--   a(href='/about' class=page_active === 'about' ? 'active' : '')--><!--     img(src='/images/github.svg')--></div></nav><div class="view"><div class="featured-box-component content-page"><div class="post-title">Scaling Tile38 on Kubernetes</div><div class="post-date">Aug 1st, 2018</div><div class="post-image" style="background-image: url(&quot;/pages/scaling-tile38-on-kubernetes/1.png?0.3387272335472533&quot;);"></div><h1 id="scaling-tile38-on-kubernetes">Scaling Tile38 on Kubernetes</h1>
+ga('send', 'pageview');</script></head><body><nav class="navbar"><div class="content"><a class="logo" href="/"><img class="image" src="/images/logo.svg"></a><a class="title" href="/">Magpie dev</a><div class="items"><a href="/posts">articles</a></div><!-- .items.right--><!--   a(href='/about' class=page_active === 'about' ? 'active' : '')--><!--     img(src='/images/github.svg')--></div></nav><div class="view"><div class="featured-box-component content-page"><div class="post-title">Scaling Tile38 on Kubernetes</div><div class="post-date">Aug 6th, 2018</div><div class="post-image" style="background-image: url(&quot;/pages/scaling-tile38-on-kubernetes/1.png?0.02662221165737022&quot;);"></div><h1 id="scaling-tile38-on-kubernetes">Scaling Tile38 on Kubernetes</h1>
 <p><br /></p>
 <p><a href="https://github.com/tidwall/tile38">Tile38</a> is a geospatial database written in golang. It is designed to compute gis data with high throughput.</p>
-<p>For our system we needed to autoscale Tile38 from 1 instance on kubernetes to 50 or more depending on load and requests. Since Tile38 uses mostly CPU for calculations, it is easy to add a CPU based horizontal autoscaler on kubernetes with ease.</p>
+<p>For our system we needed to autoscale Tile38 from 1 instance on kubernetes to 50 or more depending on load and requests.</p>
+<p>Since Tile38 uses mostly CPU for calculations, it is easy to add a CPU based horizontal autoscaler on kubernetes to change the number of replicas available.</p>
 <h2 id="leader-follower-replication">leader/follower replication</h2>
 <p>Tile38 supports basic leader/follower replication. The follower instances run the tile38 command:</p>
 <p><code>FOLLOW leaderhost 9851</code></p>
@@ -15,7 +16,8 @@ ga('send', 'pageview');</script></head><body><nav class="navbar"><div class="con
 <p>For the setup, there will be one leader read/write kubernetes Deployment with a service dedicated to it, and one follower/readonly Deployment with a service for it.</p>
 <p>This diagram shows a general overview:</p>
 <p><img src="./2.png" alt="diagram one -- kubernets leader/follower replication"></p>
-<p><code>tile38.yaml</code></p>
+<p><br />
+<code>tile38.yaml</code></p>
 <div class="markdown-code"><pre><code class="lang-yaml"><span class="hljs-meta">---</span>
 <span class="hljs-comment"># Tile38 master service</span>
 <span class="hljs-attr">apiVersion:</span> <span class="hljs-string">v1</span>
@@ -32,7 +34,8 @@ ga('send', 'pageview');</script></head><body><nav class="navbar"><div class="con
 
 <span class="hljs-meta">---</span></code></pre></div><p>That service will enable your API deployment to connect to <code>http://tile38-write:9851</code> or via tile38&#39;s redis adapter, <code>tile38-write:9851</code>.</p>
 <p>The tile38 leader now needs a deployment of a single read/write Pod. This ensures that you are never writing to two instances that do not sync.</p>
-<p><code>tile38.yaml</code></p>
+<p><br />
+<code>tile38.yaml</code></p>
 <div class="markdown-code"><pre><code class="lang-yaml"><span class="hljs-meta">---</span>
 <span class="hljs-comment"># Tile38 master deployment</span>
 <span class="hljs-attr">apiVersion:</span> <span class="hljs-string">extensions/v1beta1</span>
@@ -55,7 +58,8 @@ ga('send', 'pageview');</script></head><body><nav class="navbar"><div class="con
 <span class="hljs-meta">---</span></code></pre></div><p>Once complete you can run <code>kubectl apply -f tile38.yaml</code> to setup the deployment and service. Verify that you can connect to it inside your cluster.</p>
 <h4 id="now-for-the-autoscaling-read-follow-instances-">Now for the autoscaling read (follow) instances.</h4>
 <p>This service and deployment is what will take the brunt of all read requests, at times each pod may be using 100% of it&#39;s assigned CPU. For this setup I assigned one full CPU core to each Pod.</p>
-<p><code>tile38.yaml</code></p>
+<p><br />
+<code>tile38.yaml</code></p>
 <div class="markdown-code"><pre><code class="lang-yaml"><span class="hljs-meta">---</span>
 <span class="hljs-comment"># Tile38 read service</span>
 <span class="hljs-attr">apiVersion:</span> <span class="hljs-string">v1</span>
@@ -71,7 +75,8 @@ ga('send', 'pageview');</script></head><body><nav class="navbar"><div class="con
 <span class="hljs-attr">    app:</span> <span class="hljs-string">tile38-read</span>
 
 <span class="hljs-meta">---</span></code></pre></div><p>Your instances can now connect to <code>http://tile38-read:9851</code> and all the requests will be balanced to all the Pods in the following Deployment:</p>
-<p><code>tile38.yaml</code></p>
+<p><br />
+<code>tile38.yaml</code></p>
 <div class="markdown-code"><pre><code class="lang-yaml"><span class="hljs-meta">---</span>
 <span class="hljs-comment"># Tile38 read</span>
 <span class="hljs-attr">apiVersion:</span> <span class="hljs-string">extensions/v1beta1</span>
@@ -120,7 +125,8 @@ ga('send', 'pageview');</script></head><body><nav class="navbar"><div class="con
 <p>The core kubernetes autoscaler does a decent job of monitoring the cpu levels of the Pods and changing the requested replica counts as needed.</p>
 <p>This autoscaling config will ensure that the replicas will start at 1 and scale up to a max of 10 when the average cpu crosses over 80%.</p>
 <p>When the cpu load drops below 80% it will slowly start removing the excess replicas until it achieves constant 80% load or just one remaining replica.</p>
-<p><code>tile38.yaml</code></p>
+<p><br />
+<code>tile38.yaml</code></p>
 <div class="markdown-code"><pre><code class="lang-undefined"><span class="hljs-meta">---</span>
 
 <span class="hljs-comment"># Autoscale pods based on cpu usage</span>

@@ -18,7 +18,8 @@
       "featured": true,
       "og_image": "2.png",
       "date": "Jun 23rd, 2017",
-      "path": "build-a-anti-spam-spam-bot-in-nodejs"
+      "path": "build-a-anti-spam-spam-bot-in-nodejs",
+      "timestamp": 1498255563643
     },
     {
       "id": 1,
@@ -32,7 +33,8 @@
       "featured": true,
       "og_image": "2.png",
       "date": "Jan 16th, 2017",
-      "path": "create-an-ios-inspired-toggle-switch-in-react"
+      "path": "create-an-ios-inspired-toggle-switch-in-react",
+      "timestamp": 1484604194718
     },
     {
       "id": 3,
@@ -47,8 +49,9 @@
       "image": "/pages/scaling-tile38-on-kubernetes/1.png",
       "featured": true,
       "og_image": "1.png",
-      "date": "Aug 1st, 2018",
-      "path": "scaling-tile38-on-kubernetes"
+      "date": "Aug 6th, 2018",
+      "path": "scaling-tile38-on-kubernetes",
+      "timestamp": 1533571518718
     }
   ]
 }
