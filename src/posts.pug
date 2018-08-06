@@ -3,10 +3,11 @@ extends layout/_default
 block vars
   - var page_title = 'Articles'
   - var page_active = 'posts'
+  - var posts = pages.filter(v => v.featured).sort((a, b) => a.timestamp < b.timestamp)
 block content
   .view
     .title-component Articles
-    each page in pages
+    each page in posts
       a.box-component(href=`${page_prefix + page.path}`)
         .image(style='background-image: url("' + page.image + '")')
         .title=page.title
