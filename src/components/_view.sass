@@ -18,9 +18,22 @@
     min-width: 200px
     margin: 100px auto 50px
 
-  .post-date
+  .post-info
     float: right
     margin-top: 2px
+    .post-date
+    .post-views
+      height: 40px
+      width: 100%
+      display: flex
+      align-items: center
+    .stats
+      overflow: hidden
+      width: 65px
+      height: 34px
+      margin: 0
+      padding: 0
+      border: none
 
   .post-fin
     margin: 20px auto
@@ -51,14 +64,14 @@
     margin-bottom: 16px
     margin-top: 16px
 
-  @media all and (max-width: 970px)
-    .content-page
-      padding: 10px
-      margin: 5px
-      width: calc(100% - 10px)
-      .post-title, .post-date
-        text-align: center
-      .post-date
-        margin: 5px auto
-        float: initial
-
+@media all and (max-width: 970px)
+  .content-page
+    padding: 10px
+    margin: 5px
+    width: calc(100% - 10px)
+    .post-title, .post-date, .post-info
+    .post-info
+      width: 100%
+      padding-top: 8px
+      float: left
+      margin: 5px auto
