@@ -2,7 +2,7 @@ extends ../../layout/_default
 
 block vars
   - var rand = Math.random()
-  - var page_id = 3
+  - var page_id = 4
   - var page = pages.filter(v => v.id === page_id)[0]
   - var description = page.description
   - var page_title = page.title
@@ -13,14 +13,10 @@ block content
     .featured-box-component.content-page
       if page.title
         .post-title=page.title
-        .post-info
-          .post-date=page.date
-          .post-views
-            div Views:
-            iframe.stats(src='https://stats.lacy.ninja/' + page.path + '/stats?output=text' scrolling="no")
+        .post-date=page.date
       if page.image
         .post-image(style='background-image: url("' + page.image + '?' + rand + '")')
       include:markdown ./index.md
       .post-fin
         img(src='/images/logo.svg')
-      img(src='https://stats.lacy.ninja/' + page.path + '/stat.gif')
+      img(src='http://stats.lacy.ninja/' + page.path + '/stat.gif')

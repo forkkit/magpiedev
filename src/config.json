@@ -37,6 +37,23 @@
       "timestamp": 1484604194718
     },
     {
+      "id": 4,
+      "title": "Monitoring kubernetes services with kubecat and Sentry.io",
+      "description": "Adding cluster wide monitoring of internal and external services in kubernetes",
+      "categories": [
+        "monitoring",
+        "kubernetes",
+        "kubecat",
+        "devops"
+      ],
+      "image": "/pages/monitoring-kubernetes-services-with-kubecat/1.jpg",
+      "featured": true,
+      "og_image": "1.jpg",
+      "date": "Mar 30th, 2019",
+      "path": "monitoring-kubernetes-services-with-kubecat",
+      "timestamp": 1553961918518
+    },
+    {
       "id": 3,
       "title": "Scaling Tile38 on Kubernetes",
       "description": "Scaling Tile38 with replication on kubernetes",
