@@ -13,7 +13,11 @@ block content
     .featured-box-component.content-page
       if page.title
         .post-title=page.title
-        .post-date=page.date
+        .post-info
+          .post-date=page.date
+          .post-views
+            div Views:
+            iframe.stats(src='https://stats.lacy.ninja/' + page.path + '/stats?output=text' scrolling="no")
       if page.image
         .post-image(style='background-image: url("' + page.image + '?' + rand + '")')
       include:markdown ./index.md
