@@ -1,0 +1,45 @@
+<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"><meta name="description" content="Appending/Prepending Map slices in go"><meta property="og:title" content="Appending and prepending golang slices | Magpie dev"><meta property="og:site_name" content="Magpie dev"><meta property="og:type" content="website"><meta property="og:description" content="Appending/Prepending Map slices in go"><meta property="og:url" content="https://magpiedev.com"><meta property="og:image" content="https://magpiedev.com/pages/appending-and-prepending-golang-slices/1.jpg?0.13132554620537418?0.9043408876811627"><link rel="stylesheet" href="/index.css?0.9043408876811627"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400"><link rel="shortcut icon" href="/images/logo.ico"><title>Appending and prepending golang slices | Magpie dev</title><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-101774767-2', 'auto');
+ga('send', 'pageview');</script></head><body><nav class="navbar"><div class="content"><a class="logo" href="/"><img class="image" src="/images/logo.svg"></a><a class="title" href="/">Magpie dev</a><div class="items"><a href="/posts">articles</a></div><!-- .items.right--><!--   a(href='/about' class=page_active === 'about' ? 'active' : '')--><!--     img(src='/images/github.svg')--></div></nav><div class="view"><div class="featured-box-component content-page"><div class="post-title">Appending and prepending golang slices</div><div class="post-info"><div class="post-date">Sep 10th, 2019</div><div class="post-views"><div>Views:</div><iframe class="stats" src="https://stats.lacy.ninja/appending-and-prepending-golang-slices/stats?output=text" scrolling="no"></iframe></div></div><div class="post-image" style="background-image: url(&quot;/pages/appending-and-prepending-golang-slices/1.jpg?0.13132554620537418&quot;);"></div><h4 id="quick-tip">Quick tip</h4>
+<p>Take a simple slice of structs:</p>
+<div class="markdown-code"><pre><code class="lang-go"><span class="hljs-keyword">type</span> <span class="hljs-keyword">Post</span> struct {
+  Name <span class="hljs-built_in">string</span>
+  ID   int
+}
+
+<span class="hljs-keyword">var</span> <span class="hljs-keyword">list</span> []<span class="hljs-keyword">Post</span></code></pre></div><p>Appending uses the builtin keyword <code>append</code></p>
+<div class="markdown-code"><pre><code class="lang-go"><span class="hljs-keyword">var</span> <span class="hljs-keyword">list</span> []<span class="hljs-keyword">Post</span>
+item1 := <span class="hljs-keyword">Post</span>{Name: <span class="hljs-string">"first"</span>, ID: 0}
+item2 := <span class="hljs-keyword">Post</span>{Name: <span class="hljs-string">"second"</span>, ID: 1}
+
+<span class="hljs-keyword">list</span> = <span class="hljs-keyword">append</span>(<span class="hljs-keyword">list</span>, item1)
+len(<span class="hljs-keyword">list</span>)
+<span class="hljs-comment">// &gt; 1</span>
+
+<span class="hljs-keyword">list</span> = <span class="hljs-keyword">append</span>(<span class="hljs-keyword">list</span>, item2)
+
+len(<span class="hljs-keyword">list</span>)
+<span class="hljs-comment">// &gt; 2</span></code></pre></div><h4 id="prepending">Prepending</h4>
+<p>This is where things get interesting.</p>
+<p>The <a href="https://golang.org/pkg/builtin/#append">append</a> function &quot;merges&quot; or conacts an item to a slice.</p>
+<p>Type signature:</p>
+<p><code>func append(slice []Type, elems ...Type) []Type</code></p>
+<p>By inverting the order and creating a slice with a single element we can use a variadic interface to destructure the original slice.</p>
+<div class="markdown-code"><pre><code class="lang-go">
+item1 := <span class="hljs-keyword">Post</span>{Name: <span class="hljs-string">"first"</span>, ID: 0}
+item2 := <span class="hljs-keyword">Post</span>{Name: <span class="hljs-string">"second"</span>, ID: 1}
+
+<span class="hljs-keyword">list</span> = <span class="hljs-keyword">append</span>(<span class="hljs-keyword">list</span>, item1)
+
+fmt.Println(<span class="hljs-keyword">list</span>[0])
+<span class="hljs-comment">// {0, first}</span>
+
+
+<span class="hljs-keyword">list</span> = <span class="hljs-keyword">append</span>([]<span class="hljs-keyword">Post</span>{item2}, <span class="hljs-keyword">list</span>...)
+fmt.Println(<span class="hljs-keyword">list</span>[0])
+<span class="hljs-comment">// {1, second}</span></code></pre></div><p>Happy affixing</p>
+<div class="post-fin"><img src="/images/logo.svg"></div><img src="http://stats.lacy.ninja/appending-and-prepending-golang-slices/stat.gif"></div></div><footer class="footer-component"><div class="footer-content"><p>Appending/Prepending Map slices in go</p><a href="https://blog.codinghorror.com/the-magpie-developer/" target="_blank">The Magpie developer</a><br><br><div>logo magpie icon by</div><a href="https://thenounproject.com/phlehmann/" target="_blank">Philipp Lehmann</a></div><p>© 2017 magpiedev</p></footer><!-- script(src='/js/index.js')--></body></html>

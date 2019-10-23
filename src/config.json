@@ -7,6 +7,20 @@
   "DO NOT EDIT THE PAGES BELOW": "yeah",
   "pages": [
     {
+      "id": 5,
+      "title": "Appending and prepending golang slices",
+      "description": "Appending/Prepending Map slices in go",
+      "categories": [
+        "golang"
+      ],
+      "image": "/pages/appending-and-prepending-golang-slices/1.jpg",
+      "featured": true,
+      "og_image": "1.jpg",
+      "date": "Sep 10th, 2019",
+      "path": "appending-and-prepending-golang-slices",
+      "timestamp": 1568131518518
+    },
+    {
       "id": 2,
       "title": "Build an anti-spam-spam bot in node.js",
       "description": "Have fun and annoy those pesky spammers!",

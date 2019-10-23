@@ -1,0 +1,10 @@
+{
+  "id": 5,
+  "title": "Appending and prepending golang slices",
+  "description": "Appending/Prepending Map slices in go",
+  "categories": [ "golang" ],
+  "image": "1.jpg",
+  "featured": true,
+  "og_image": "1.jpg",
+  "date": "2019-09-10T16:05:18.518Z"
+}
