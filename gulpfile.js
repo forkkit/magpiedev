@@ -101,7 +101,7 @@ gulp.task('sass', () => {
   return gulp.src(config.src.sass)
     .pipe(sass())
     .pipe(prefixer({
-      browsers: ['last 4 versions'],
+      overrideBrowserslist: ['last 4 versions'],
       cascade: false
     }))
     .pipe(cssmin())

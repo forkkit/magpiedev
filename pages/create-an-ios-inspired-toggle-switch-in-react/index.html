@@ -1,10 +1,10 @@
-<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"><meta name="description" content="A simple iOS inspired toggle switch with React and CSS"><meta property="og:title" content="Create an iOS inspired toggle switch in React | Magpie dev"><meta property="og:site_name" content="Magpie dev"><meta property="og:type" content="website"><meta property="og:description" content="A simple iOS inspired toggle switch with React and CSS"><meta property="og:url" content="https://magpiedev.com"><meta property="og:image" content="https://magpiedev.com/pages/create-an-ios-inspired-toggle-switch-in-react/2.png?0.9273096150528999?0.994218049886815"><link rel="stylesheet" href="/index.css?0.994218049886815"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400"><link rel="shortcut icon" href="/images/logo.ico"><title>Create an iOS inspired toggle switch in React | Magpie dev</title><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"><meta name="description" content="A simple iOS inspired toggle switch with React and CSS"><meta property="og:title" content="Create an iOS inspired toggle switch in React | Magpie dev"><meta property="og:site_name" content="Magpie dev"><meta property="og:type" content="website"><meta property="og:description" content="A simple iOS inspired toggle switch with React and CSS"><meta property="og:url" content="https://magpiedev.com"><meta property="og:image" content="https://magpiedev.com/pages/create-an-ios-inspired-toggle-switch-in-react/2.png?0.6797496059793147?0.27137898712057384"><link rel="stylesheet" href="/index.css?0.27137898712057384"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400"><link rel="shortcut icon" href="/images/logo.ico"><title>Create an iOS inspired toggle switch in React | Magpie dev</title><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
 ga('create', 'UA-101774767-2', 'auto');
-ga('send', 'pageview');</script></head><body><nav class="navbar"><div class="content"><a class="logo" href="/"><img class="image" src="/images/logo.svg"></a><a class="title" href="/">Magpie dev</a><div class="items"><a href="/posts">articles</a></div><!-- .items.right--><!--   a(href='/about' class=page_active === 'about' ? 'active' : '')--><!--     img(src='/images/github.svg')--></div></nav><div class="view"><div class="featured-box-component content-page"><div class="post-title">Create an iOS inspired toggle switch in React</div><div class="post-info"><div class="post-date">Jan 16th, 2017</div><div class="post-views"><div>Views:</div><iframe class="stats" src="https://stats.lacy.ninja/create-an-ios-inspired-toggle-switch-in-react/stats?output=text" scrolling="no"></iframe></div></div><div class="post-image" style="background-image: url(&quot;/pages/create-an-ios-inspired-toggle-switch-in-react/1.png?0.9273096150528999&quot;);"></div><p>Here is a simple React toggle switch component that can be used for any mobile inspired website, or hybrid app.</p>
+ga('send', 'pageview');</script></head><body><nav class="navbar"><div class="content"><a class="logo" href="/"><img class="image" src="/images/logo.svg"></a><a class="title" href="/">Magpie dev</a><div class="items"><a href="/posts">articles</a></div><!-- .items.right--><!--   a(href='/about' class=page_active === 'about' ? 'active' : '')--><!--     img(src='/images/github.svg')--></div></nav><div class="view"><div class="featured-box-component content-page"><div class="post-title">Create an iOS inspired toggle switch in React</div><div class="post-info"><div class="post-date">Jan 16th, 2017</div><div class="post-views"><div>Views:</div><iframe class="stats" src="https://stats.lacy.ninja/create-an-ios-inspired-toggle-switch-in-react/stats?output=text" scrolling="no"></iframe></div></div><div class="post-image" style="background-image: url(&quot;/pages/create-an-ios-inspired-toggle-switch-in-react/1.png?0.6797496059793147&quot;)"></div><p>Here is a simple React toggle switch component that can be used for any mobile inspired website, or hybrid app.</p>
 <div class="spacer h25"></div>
 
 <h2 id="the-react">The React</h2>
@@ -15,7 +15,8 @@ ga('send', 'pageview');</script></head><body><nav class="navbar"><div class="con
 
 <span class="hljs-comment">// Component will go here.</span>
 
-ReactDOM.render(&lt;Toggle /&gt;, <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'root'</span>))</code></pre></div><p>Now, create a class extending the React Component and insert it where our prior comment was:</p>
+ReactDOM.render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Toggle</span> /&gt;</span></span>, <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'root'</span>))
+</code></pre></div><p>Now, create a class extending the React Component and insert it where our prior comment was:</p>
 <div class="markdown-code"><pre><code class="lang-js">
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Toggle</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
   state = {
@@ -34,9 +35,9 @@ The className will add the <code>toggle</code> class when the toggle is active.<
       <span class="hljs-attr">className</span>=<span class="hljs-string">{className}</span>
       <span class="hljs-attr">onClick</span>=<span class="hljs-string">{()</span> =&gt;</span> this.toggle()}&gt;
       <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">'toggle-button'</span> /&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
   )
-}</span></code></pre></div><h2 id="the-css">The CSS</h2>
+}</code></pre></div><h2 id="the-css">The CSS</h2>
 <div class="markdown-code"><pre><code class="lang-css"><span class="hljs-selector-class">.wrapper</span> {
   <span class="hljs-attribute">padding</span>: <span class="hljs-number">50px</span>;
 }
@@ -72,7 +73,7 @@ The className will add the <code>toggle</code> class when the toggle is active.<
   <span class="hljs-attribute">transition</span>: right <span class="hljs-number">0.3s</span>;
 }</code></pre></div><h2 id="jsfiddle-demo">JSFiddle Demo</h2>
 <p>All together now:</p>
-<p><div class='spacer'></div></p>
+<div class='spacer'></div>
 <iframe width="100%" height="300" src="//jsfiddle.net/stevelacy/tnp9m9zc/11/embedded/result,js,css" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 

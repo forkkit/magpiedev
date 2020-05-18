@@ -3,20 +3,20 @@
     "start": "gulp"
   },
   "devDependencies": {
-    "ecstatic": "^2.1.0",
-    "fecha": "^2.3.0",
+    "ecstatic": "^4.1.4",
+    "fecha": "^4.2.0",
     "gulp": "gulpjs/gulp#4.0",
-    "gulp-autoprefixer": "^3.1.1",
+    "gulp-autoprefixer": "^7.0.1",
     "gulp-autowatch": "^1.0.2",
-    "gulp-clean-css": "^2.3.2",
-    "gulp-livereload": "^3.8.1",
-    "gulp-pug": "^3.2.0",
-    "gulp-rename": "^1.2.2",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-livereload": "^4.0.2",
+    "gulp-pug": "^4.0.1",
+    "gulp-rename": "^2.0.0",
     "gulp-sass": "^4.0.1",
-    "marked": "^0.3.6",
-    "through2": "^2.0.3"
+    "marked": "^1.1.0",
+    "through2": "^3.0.1"
   },
   "dependencies": {
-    "highlight.js": "^9.9.0"
+    "highlight.js": "^10.0.3"
   }
 }
