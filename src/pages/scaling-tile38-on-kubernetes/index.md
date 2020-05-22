@@ -26,7 +26,9 @@ This diagram shows a general overview:
 
 
 <br />
+
 `tile38.yaml`
+
 
 ```yaml
 ---
@@ -52,7 +54,9 @@ That service will enable your API deployment to connect to `http://tile38-write:
 The tile38 leader now needs a deployment of a single read/write Pod. This ensures that you are never writing to two instances that do not sync.
 
 <br />
+
 `tile38.yaml`
+
 
 ```yaml
 ---
@@ -87,7 +91,9 @@ This service and deployment is what will take the brunt of all read requests, at
 
 
 <br />
+
 `tile38.yaml`
+
 
 ```yaml
 ---
@@ -111,7 +117,9 @@ Your instances can now connect to `http://tile38-read:9851` and all the requests
 
 
 <br />
+
 `tile38.yaml`
+
 
 ```yaml
 ---
@@ -173,8 +181,12 @@ This autoscaling config will ensure that the replicas will start at 1 and scale 
 When the cpu load drops below 80% it will slowly start removing the excess replicas until it achieves constant 80% load or just one remaining replica.
 
 <br />
+
+
 `tile38.yaml`
-```
+
+
+```yaml
 ---
 
 # Autoscale pods based on cpu usage
@@ -205,7 +217,7 @@ Deploy the entire tile38 config with `kubectl apply -f ./tile38.yaml`
 <br />
 Verify with `kubectl get deployment --namespace api` to confirm that the correct number of instances are created.
 
-```
+```shell
 $ kubectl get deployment --namespace api
 NAME                        DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
 tile38-write                1         1         1            1           21m
@@ -216,7 +228,7 @@ tile38-read                 3         3         3            3           21m
 
 You can also send a curl request from inside the cluster to the master and read instances to get their `server` information.
 
-```
+```shell
 $ curl tile38-read:9851/server
 {"ok":true,"stats":{"aof_size":6807927,"avg_item_size":126,"cpus":8,"heap_released":0,"heap_size":37048872,"http_transport":true,"id":"30b9d6ddfda2d30018503ebg49e79a21","in_memory_size":7012733,"max_heap_size":0,"mem_alloc":37048872,"num_collections":1,"num_hooks":0,"num_objects":25,"num_points":292169,"num_strings":0,"pid":38461,"pointer_size":8,"read_only":false,"threads":8},"elapsed":"1.738714ms"}
 ```
@@ -226,7 +238,7 @@ $ curl tile38-read:9851/server
 You can confirm that the autoscaling is working by submitting high traffic to the instances and checking with `kubectl`
 
 
-```
+```shell
 $ kubectl get deployment --namespace api
 NAME                        DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
 tile38-write                1         1         1            1           45m
