@@ -3,7 +3,7 @@ extends layout/_default
 block vars
   - var page_title = 'Articles'
   - var page_active = 'posts'
-  - var posts = pages.filter(v => v.featured).sort((a, b) => a.timestamp < b.timestamp)
+  - var posts = pages.filter(v => v.featured).sort((a, b) => b.timestamp - a.timestamp)
 block content
   .view
     .title-component Articles

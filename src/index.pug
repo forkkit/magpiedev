@@ -3,11 +3,11 @@ extends layout/_default
 block vars
   - var page_title = description
   - var page_active = 'index'
-  - var featured = pages.filter(v => v.featured).sort((a, b) => a.timestamp < b.timestamp)
+  - var posts = pages.filter(v => v.featured).sort((a, b) => b.timestamp - a.timestamp)
 
 block content
   .view
-    each page in featured
+    each page in posts
       a.featured-box-component(href=`${page_prefix + page.path}`)
         .title=page.title
         .date=page.date
